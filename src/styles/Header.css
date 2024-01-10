@@ -1,0 +1,13 @@
+header {
+  padding: 2rem 4rem;
+}
+
+header > nav {
+  display: flex;
+  justify-content: space-between;
+}
+header > nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}
