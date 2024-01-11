@@ -1,0 +1,26 @@
+.sidebar {
+  background-color: #ffffff;
+  padding: 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  height: 100vh;
+  /* position: fixed; */
+}
+.sidebar-list {
+  color: #868687;
+  /* width: 30%; */
+  width: fit-content;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  /* gap: 1.5rem; */
+  justify-content: space-between;
+}
+.sidebar-list-items {
+  display: flex;
+  gap: 0.5rem;
+}
+.sidebar-list-items > i {
+  color: #faa7a4;
+}

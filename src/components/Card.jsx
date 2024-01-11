@@ -3,7 +3,6 @@ import "../styles/Card.css";
 
 const Card = ({ movie }) => {
   const rating = Array.apply("a", Array(movie.rating));
-  console.log(rating);
   return (
     <div className="card">
       <div className="card-img-wrapper">
@@ -25,13 +24,13 @@ const Card = ({ movie }) => {
         </div>
         {/* <p>{movie.review}</p> */}
         <p>{movie.release_year}</p>
-        <p>"{movie.personalNote}"</p>
-        <div className="card-watched-wrapper">
+        <p className="personal-note">"{movie.personalNote}"</p>
+        {/* <div className="card-watched-wrapper">
           <small>
             <i className="fa-solid fa-clock"></i>
           </small>
           <small>{movie.watchedAt}</small>
-        </div>
+        </div> */}
         <div className="card-watched-wrapper location-section">
           <i className="fa-solid fa-location-dot"></i>
           <p>{movie.location}</p>
