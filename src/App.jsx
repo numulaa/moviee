@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import Card from "./components/Card";
-import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Post from "./components/Post";
 import FriendLists from "./components/FriendsLists";
+import { Link, Outlet } from "react-router-dom";
 // const baseMoveiDbUrl = `https://api.themoviedb.org/3/movie/`;
 // const url = "https://api.themoviedb.org/3/discover/movie";
 // const API_KEY = "cce62c6a0ad767dbecbf31ff7f4ceb1e";
@@ -14,7 +14,7 @@ const movieLists = [
   {
     id: 1,
     title: "Habibie Ainun",
-    genre: ["mistery", "fantasy"],
+    genre: ["romance", "drama"],
     imageUrl:
       "https://upload.wikimedia.org/wikipedia/id/7/74/Habibie_Ainun_Poster.jpg",
     releaseYear: 2012,
@@ -116,12 +116,13 @@ function App() {
 
   return (
     <section className="main-section">
-      {/* <Header /> */}
       <Sidebar />
       <main>
         <h3 className="main-quote">"Cinematic dreams fuel life's scenes."</h3>
         {movieLists.map((movie) => (
-          <Card movie={movie} key={movie.id} />
+          <Link to={`/post/${movie.id}`}>
+            <Card movie={movie} key={movie.id} />
+          </Link>
         ))}
       </main>
       <section className="right-section">

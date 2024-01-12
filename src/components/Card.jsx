@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import "../styles/Card.css";
 
@@ -24,7 +25,7 @@ const Card = ({ movie }) => {
         </div>
         {/* <p>{movie.review}</p> */}
         <p>{movie.release_year}</p>
-        <p className="personal-note">"{movie.personalNote}"</p>
+        <p className="personal-note">"{movie.review}"</p>
         {/* <div className="card-watched-wrapper">
           <small>
             <i className="fa-solid fa-clock"></i>
@@ -42,6 +43,10 @@ const Card = ({ movie }) => {
       </div>
     </div>
   );
+};
+
+Card.propTypes = {
+  location: PropTypes.string,
 };
 
 export default Card;

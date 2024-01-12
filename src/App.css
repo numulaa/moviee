@@ -15,10 +15,15 @@ h3 {
   font-family: "Poppins", sans-serif;
   /* font-weight: 700; */
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .main-section {
   /* display: flex; */
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 5fr 2fr;
   height: 100vh;
 }
 main {

@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 2.5rem;
   height: 100vh;
-  /* position: fixed; */
+  width: 100%;
 }
 .sidebar-list {
   color: #868687;
@@ -20,7 +20,9 @@
 .sidebar-list-items {
   display: flex;
   gap: 0.5rem;
+  text-decoration: none;
+  color: #868687;
 }
-.sidebar-list-items > i {
+.sidebar-list-items i {
   color: #faa7a4;
 }
