@@ -1,98 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import "../styles/PostDetail.css";
+import axios from "axios";
 
-const movieLists = [
-  {
-    id: 1,
-    title: "Habibie Ainun",
-    genre: ["romance", "drama"],
-    imageUrl:
-      "https://upload.wikimedia.org/wikipedia/id/7/74/Habibie_Ainun_Poster.jpg",
-    releaseYear: 2012,
-    personalNote:
-      "always be a good person, and keep striving to achieve your dreams",
-    review:
-      " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas exercitationem assumenda omnis, laudantium debitis consequuntur, obcaecati ipsum dolorum id vitae, dolores tempore. Fuga, repellendus quos praesentium omnis ducimus consectetur maiores quis dignissimos temporibus quidem perferendis",
-    watchedAt: "2 December 2023",
-    rating: 5,
-    createdAt: "2 December 2023",
-    location: "Netflix, in my warm room",
-    createdBy: "userId",
-  },
-  {
-    id: 2,
-    title: "Enola Holmes",
-    genre: ["mistery"],
-    imageUrl:
-      "https://upload.wikimedia.org/wikipedia/en/e/e6/Enola_Holmes_poster.jpeg",
-    releaseYear: 2020,
-    personalNote:
-      "be excellent, don't be scared of people's judgement, and keep striving to achieve your dreams",
-    review:
-      " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas exercitationem assumenda omnis, laudantium debitis consequuntur, obcaecati ipsum dolorum id vitae, dolores tempore. Fuga, repellendus quos praesentium omnis ducimus consectetur maiores quis dignissimos temporibus quidem perferendis",
-    watchedAt: "2 December 2023",
-    rating: 5,
-    createdAt: "2 December 2023",
-    location: "Netflix, in my warm room",
-    createdBy: "userId",
-  },
-  {
-    id: 3,
-    title: "Enola Holmes",
-    genre: ["mistery"],
-    imageUrl:
-      "https://upload.wikimedia.org/wikipedia/en/e/e6/Enola_Holmes_poster.jpeg",
-    releaseYear: 2020,
-    personalNote:
-      "be excellent, don't be scared of people's judgement, and keep striving to achieve your dreams",
-    review:
-      " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas exercitationem assumenda omnis, laudantium debitis consequuntur, obcaecati ipsum dolorum id vitae, dolores tempore. Fuga, repellendus quos praesentium omnis ducimus consectetur maiores quis dignissimos temporibus quidem perferendis",
-    watchedAt: "2 December 2023",
-    rating: 2,
-    createdAt: "2 December 2023",
-    location: "Netflix, in my warm room",
-    createdBy: "userId",
-  },
-  {
-    id: 4,
-    title: "Enola Holmes",
-    genre: ["mistery"],
-    imageUrl:
-      "https://upload.wikimedia.org/wikipedia/en/e/e6/Enola_Holmes_poster.jpeg",
-    releaseYear: 2020,
-    personalNote:
-      "be excellent, don't be scared of people's judgement, and keep striving to achieve your dreams",
-    review:
-      " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas exercitationem assumenda omnis, laudantium debitis consequuntur, obcaecati ipsum dolorum id vitae, dolores tempore. Fuga, repellendus quos praesentium omnis ducimus consectetur maiores quis dignissimos temporibus quidem perferendis",
-    watchedAt: "2 December 2023",
-    rating: 3,
-    createdAt: "2 December 2023",
-    location: "Netflix, in my warm room",
-    createdBy: "userId",
-  },
-];
+const baseUrl = "http://localhost:3001";
 
 const PostDetail = () => {
   const { id } = useParams();
-  const post = movieLists.find((item) => item.id === Number(id));
-  console.log(typeof id);
+  const [currMovie, setCurrMovie] = useState({});
+
+  useEffect(() => {
+    axios.get(`${baseUrl}/movieLists`).then((res) => {
+      const response = res.data;
+      const post = response.find((item) => item.id === Number(id));
+      setCurrMovie(post);
+    });
+  }, []);
+
+  console.log(currMovie);
   return (
     <section className="post-detail-main-section">
       <Sidebar />
       <main className="post-detail-main">
         <div className="post-detail-img-wrapper">
-          <img src={post.imageUrl} />
+          <img src={currMovie.imageUrl} />
         </div>
-        <h3>{post.title}</h3>
-        <small>Reviewed by {post.createdBy}</small>
+        <h3>{currMovie.title}</h3>
+        <small>Reviewed by {currMovie.createdBy}</small>
         <p>Hello this is the detail post</p>
-        <p>{post.review}</p>
-        <p>{post.personalNote}</p>
+        <p>{currMovie.review}</p>
+        <p>{currMovie.personalNote}</p>
         <small>
           <i>
-            {post.location}. {post.watchedAt}
+            {currMovie.location}. {currMovie.watchedAt}
           </i>
         </small>
       </main>

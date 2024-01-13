@@ -6,6 +6,7 @@ import Post from "./components/Post.jsx";
 import DefaultMessage from "./components/DefaultMessage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import PostDetail from "./pages/PostDetail.jsx";
+import CreateForm from "./pages/Create.jsx";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -23,6 +24,11 @@ const Router = () => {
     {
       path: "/post/:id",
       element: <PostDetail />,
+      children: [{ index: true, element: <DefaultMessage /> }],
+    },
+    {
+      path: "/create",
+      element: <CreateForm />,
       children: [{ index: true, element: <DefaultMessage /> }],
     },
   ]);
