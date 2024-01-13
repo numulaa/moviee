@@ -9,16 +9,18 @@ const baseUrl = "http://localhost:3001";
 const PostDetail = () => {
   const { id } = useParams();
   const [currMovie, setCurrMovie] = useState({});
+  const [rating, setRating] = useState([]);
+  const [review, setReview] = useState([]);
 
   useEffect(() => {
     axios.get(`${baseUrl}/movieLists`).then((res) => {
       const response = res.data;
       const post = response.find((item) => item.id === Number(id));
       setCurrMovie(post);
+      setRating(Array.apply("a", Array(post.rating)));
+      setReview(post.review);
     });
   }, []);
-
-  console.log(currMovie);
   return (
     <section className="post-detail-main-section">
       <Sidebar />
@@ -27,10 +29,20 @@ const PostDetail = () => {
           <img src={currMovie.imageUrl} />
         </div>
         <h3>{currMovie.title}</h3>
+        <div className="ratings">
+          {rating.map((x, i) => (
+            <i className="fa-solid fa-star icon-star-color" key={i}></i>
+          ))}
+        </div>
         <small>Reviewed by {currMovie.createdBy}</small>
-        <p>Hello this is the detail post</p>
-        <p>{currMovie.review}</p>
-        <p>{currMovie.personalNote}</p>
+        <div className="main-content">
+          {review.map((text) => (
+            <p key={text}>{text}</p>
+          ))}
+          {/* <p>{currMovie.review}</p> */}
+          <h4>Personal Note</h4>
+          <p>{currMovie.personalNote}</p>
+        </div>
         <small>
           <i>
             {currMovie.location}. {currMovie.watchedAt}

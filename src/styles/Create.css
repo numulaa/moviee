@@ -73,6 +73,14 @@ textarea {
   background-color: #e2deec;
   color: #51456b;
 }
+.disable-button {
+  background-color: gray;
+  cursor: auto;
+}
+.disable-button:hover {
+  background-color: gray;
+  color: #f2f3f8;
+}
 .create-form-bottom-detail {
   display: flex;
   flex-direction: column;

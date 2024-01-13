@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Create.css";
 import Sidebar from "../components/Sidebar";
+import Input from "../components/Input";
+import { number } from "prop-types";
 
 const baseUrl = "http://localhost:3001";
 
@@ -16,7 +18,7 @@ const CreateForm = () => {
     personalNote: "",
     review: "",
     watchedAt: "",
-    rating: 5,
+    rating: null,
     createdAt: "2 December 2023",
     location: "",
     createdBy: "",
@@ -30,6 +32,9 @@ const CreateForm = () => {
       ...newMovieReview,
       id: newId,
       createdAt: new Date(),
+      imageUrl:
+        newMovieReview.imageUrl ||
+        "https://upload.wikimedia.org/wikipedia/en/e/e6/Enola_Holmes_poster.jpeg",
     };
     axios.post(`${baseUrl}/movieLists`, newMovie).then((res) => res.data);
     console.log(newMovie);
@@ -49,6 +54,7 @@ const CreateForm = () => {
     });
     navigate(`/`);
   };
+  console.log(newMovieReview.review);
   return (
     <div className="create-section">
       <Sidebar />
@@ -71,6 +77,7 @@ const CreateForm = () => {
                   type="text"
                   placeholder="Movie title"
                   value={newMovieReview.title}
+                  required={true}
                   onChange={(e) => {
                     setNewMovieReview({
                       ...newMovieReview,
@@ -80,120 +87,115 @@ const CreateForm = () => {
                 />
               </div>
               <div className="detail-no-title">
-                <div className="input-wrapper">
-                  <label htmlFor="movie-image-link">Image URL</label>
-                  <input
-                    id="movie-image-link"
-                    type="text"
-                    value={newMovieReview.imageUrl}
-                    onChange={(e) => {
-                      setNewMovieReview({
-                        ...newMovieReview,
-                        imageUrl: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-                <div className="input-wrapper">
-                  <label htmlFor="movie-release-year">Release Year</label>
-                  <input
-                    id="movie-release-year"
-                    type="number"
-                    value={newMovieReview.releaseYear}
-                    onChange={(e) => {
-                      setNewMovieReview({
-                        ...newMovieReview,
-                        releaseYear: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-                <div className="input-wrapper">
-                  <label htmlFor="movie-rating">Rating</label>
-                  <input
-                    id="movie-rating"
-                    type="text"
-                    value={newMovieReview.rating}
-                    onChange={(e) => {
-                      setNewMovieReview({
-                        ...newMovieReview,
-                        review: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-                <div className="input-wrapper">
-                  <label htmlFor="movie-watchedAt">Watched At</label>
-                  <input
-                    id="movie-watchedAt"
-                    type="date"
-                    value={newMovieReview.watchedAt}
-                    onChange={(e) => {
-                      setNewMovieReview({
-                        ...newMovieReview,
-                        watchedAt: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-                <div className="input-wrapper">
-                  <label htmlFor="movie-location">Location</label>
-                  <input
-                    id="movie-location"
-                    type="text"
-                    value={newMovieReview.location}
-                    onChange={(e) => {
-                      setNewMovieReview({
-                        ...newMovieReview,
-                        location: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-                <div className="input-wrapper">
-                  <label htmlFor="movie-createdBY">Created By</label>
-                  <input
-                    id="movie-createdBY"
-                    type="text"
-                    value={newMovieReview.createdBy}
-                    onChange={(e) => {
-                      setNewMovieReview({
-                        ...newMovieReview,
-                        createdBy: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
+                <Input
+                  label="Image URL"
+                  type="text"
+                  value={newMovieReview.imageUrl}
+                  required={false}
+                  onChange={(e) => {
+                    setNewMovieReview({
+                      ...newMovieReview,
+                      imageUrl: e.target.value,
+                    });
+                  }}
+                />
+                <Input
+                  label="Release Year"
+                  id="movie-release-year"
+                  type="number"
+                  value={newMovieReview.releaseYear}
+                  required={true}
+                  onChange={(e) => {
+                    setNewMovieReview({
+                      ...newMovieReview,
+                      releaseYear: e.target.value,
+                    });
+                  }}
+                />
+                <Input
+                  label="Rating"
+                  id="movie-rating"
+                  type="text"
+                  value={newMovieReview.rating}
+                  required={true}
+                  onChange={(e) => {
+                    setNewMovieReview({
+                      ...newMovieReview,
+                      rating: e.target.value,
+                    });
+                  }}
+                />
+                <Input
+                  label="Watched At"
+                  id="movie-watchedAt"
+                  type="date"
+                  value={newMovieReview.watchedAt}
+                  required={true}
+                  onChange={(e) => {
+                    setNewMovieReview({
+                      ...newMovieReview,
+                      watchedAt: e.target.value,
+                    });
+                  }}
+                />
+                <Input
+                  label="Location"
+                  id="movie-location"
+                  type="text"
+                  value={newMovieReview.location}
+                  required={true}
+                  onChange={(e) => {
+                    setNewMovieReview({
+                      ...newMovieReview,
+                      location: e.target.value,
+                    });
+                  }}
+                />
+                <Input
+                  id="movie-createdBY"
+                  type="text"
+                  value={newMovieReview.createdBy}
+                  required={true}
+                  onChange={(e) => {
+                    setNewMovieReview({
+                      ...newMovieReview,
+                      createdBy: e.target.value,
+                    });
+                  }}
+                  label="Created By"
+                />
               </div>
             </div>
           </div>
 
           <div className="create-form-bottom-detail">
             <div className="input-wrapper">
-              <label htmlFor="movie-personal-note">Personal Note</label>
-              <textarea
-                id="movie-personal-note"
-                type="text"
-                value={newMovieReview.personalNote}
-                rows="10"
-                onChange={(e) => {
-                  setNewMovieReview({
-                    ...newMovieReview,
-                    personalNote: e.target.value,
-                  });
-                }}></textarea>
-            </div>
-            <div className="input-wrapper">
               <label htmlFor="movie-review">Review</label>
               <textarea
                 id="movie-review"
                 type="text"
                 value={newMovieReview.review}
+                required={true}
                 rows="15"
                 onChange={(e) => {
                   setNewMovieReview({
                     ...newMovieReview,
                     review: e.target.value,
+                  });
+                }}></textarea>
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="movie-personal-note">Personal Note</label>
+              <textarea
+                id="movie-personal-note"
+                type="text"
+                value={newMovieReview.personalNote}
+                required={true}
+                rows="10"
+                onChange={(e) => {
+                  setNewMovieReview({
+                    ...newMovieReview,
+                    personalNote: e.target.value,
                   });
                 }}></textarea>
             </div>

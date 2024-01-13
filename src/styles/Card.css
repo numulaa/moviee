@@ -16,8 +16,11 @@
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 24px;
-  margin: 12px 0;
+  margin: 20px 0;
   flex-basis: auto;
+}
+.card:hover {
+  box-shadow: 0 6px 20px 0 rgba(248, 238, 240, 1);
 }
 
 .card-img-wrapper {
