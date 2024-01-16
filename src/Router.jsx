@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import App from "./pages/Home.jsx";
-import Messages from "./pages/messages.jsx";
+import Messages from "./pages/Messages.jsx";
 import Post from "./components/Post.jsx";
 import DefaultMessage from "./components/DefaultMessage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
