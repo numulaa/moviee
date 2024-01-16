@@ -1,7 +1,7 @@
-.create-section {
+/* .create-section {
   display: grid;
   grid-template-columns: 1fr 5fr;
-}
+} */
 .create-main-section {
   /* display: flex;
   flex-direction: column;

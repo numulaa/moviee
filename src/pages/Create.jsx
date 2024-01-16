@@ -10,7 +10,7 @@ const baseUrl = "http://localhost:3001";
 
 const CreateForm = () => {
   const [newMovieReview, setNewMovieReview] = useState({
-    id: 1,
+    id: null,
     title: "",
     genre: [],
     imageUrl: "",
@@ -39,7 +39,7 @@ const CreateForm = () => {
     axios.post(`${baseUrl}/movieLists`, newMovie).then((res) => res.data);
     console.log(newMovie);
     setNewMovieReview({
-      id: 1,
+      id: null,
       title: "",
       genre: [],
       imageUrl: "",
@@ -57,7 +57,6 @@ const CreateForm = () => {
   console.log(newMovieReview.review);
   return (
     <div className="create-section">
-      <Sidebar />
       <main className="create-main-section">
         <form onSubmit={handleSubmitForm} className="create-form">
           <div className="top-create-form">

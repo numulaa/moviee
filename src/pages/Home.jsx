@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
-import Card from "./components/Card";
-import Sidebar from "./components/Sidebar";
-import Post from "./components/Post";
-import FriendLists from "./components/FriendsLists";
-// const baseMoveiDbUrl = `https://api.themoviedb.org/3/movie/`;
-// const url = "https://api.themoviedb.org/3/discover/movie";
-// const API_KEY = "cce62c6a0ad767dbecbf31ff7f4ceb1e";
+import "../styles/Home.css";
+import Card from "../components/Card";
+import Sidebar from "../components/Sidebar";
+import Post from "../components/Post";
+import FriendLists from "../components/FriendsLists";
+import UserSmall from "../components/UserSmall";
 
 const baseUrl = "http://localhost:3001";
 
@@ -29,7 +27,6 @@ function App() {
 
   return (
     <section className="main-section">
-      <Sidebar />
       <main>
         <h3 className="main-quote">"Cinematic dreams fuel life's scenes."</h3>
         {movieLists.map((movie) => (
@@ -37,6 +34,10 @@ function App() {
         ))}
       </main>
       <section className="right-section">
+        <div className="schedules">
+          <p>Movie 1</p>
+        </div>
+        <UserSmall />
         {<FriendLists friends={friends} />}
       </section>
     </section>

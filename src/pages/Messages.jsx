@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import "../styles/Messages.css";
 import profilePic from "../assets/nurul-pic.jpeg";
+import UserSmall from "../components/UserSmall";
 
 const Messages = () => {
   const messages = [
@@ -41,9 +42,9 @@ const Messages = () => {
   ];
   return (
     <section className="messages-main-section">
-      <Sidebar />
       <section className="friends-chat">
         <h3>Messages</h3>
+
         <ul className="messages-list">
           {messages.map((message) => (
             <li className="messages-list-items">

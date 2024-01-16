@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 
 const Card = ({ movie }) => {
   const rating = Array.apply("a", Array(movie.rating));
+  // const review = movie.review;
+
+  const reviewToShow = movie.review[0].substring(0, 250) + " ...";
   return (
     <Link to={`/post/${movie.id}`} key={movie.id} className="card-link">
       <div className="card">
@@ -27,7 +30,7 @@ const Card = ({ movie }) => {
           </div>
           {/* <p>{movie.review}</p> */}
           <p>{movie.release_year}</p>
-          <p className="personal-note">"{movie.review}"</p>
+          <p className="personal-note">"{reviewToShow}"</p>
           {/* <div className="card-watched-wrapper">
           <small>
             <i className="fa-solid fa-clock"></i>

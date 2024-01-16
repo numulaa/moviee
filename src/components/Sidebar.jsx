@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Sidebar.css";
 import { NavLink } from "react-router-dom";
+import Footer from "./Footer";
 
 const Sidebar = () => {
   return (
@@ -98,6 +99,7 @@ const Sidebar = () => {
           </NavLink>
         </li>
       </ul>
+      <Footer />
     </div>
   );
 };

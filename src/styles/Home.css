@@ -23,7 +23,7 @@ a {
 .main-section {
   /* display: flex; */
   display: grid;
-  grid-template-columns: 1fr 5fr 2fr;
+  grid-template-columns: 5fr 2fr;
   height: 100vh;
 }
 main {
@@ -48,4 +48,5 @@ section.right-section {
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 }

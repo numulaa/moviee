@@ -1,7 +1,7 @@
-.post-detail-main-section {
+/* .post-detail-main-section {
   display: grid;
   grid-template-columns: 1fr 5fr;
-}
+} */
 .post-detail-main {
   display: flex;
   flex-direction: column;

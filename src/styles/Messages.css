@@ -1,8 +1,7 @@
 .messages-main-section {
   /* display: flex; */
   display: grid;
-  grid-template-columns: 1fr 2fr 3fr;
-  /* grid-template-columns: 3fr 1fr; */
+  grid-template-columns: 2fr 3fr;
   height: 100vh;
 }
 .friends-chat {
