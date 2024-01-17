@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Create.css";
-import Sidebar from "../components/Sidebar";
 import Input from "../components/Input";
-import { number } from "prop-types";
+import { addDoc } from "firebase/firestore";
+import { postsCollection, auth } from "../firebase";
 
 const baseUrl = "http://localhost:3001";
 
@@ -25,17 +25,28 @@ const CreateForm = () => {
   });
   const navigate = useNavigate();
 
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
     const newId = Math.random();
+    const user = auth.currentUser;
     const newMovie = {
       ...newMovieReview,
       id: newId,
       createdAt: new Date(),
+      createdBy: user.uid,
       imageUrl:
         newMovieReview.imageUrl ||
         "https://upload.wikimedia.org/wikipedia/en/e/e6/Enola_Holmes_poster.jpeg",
     };
+
+    try {
+      const docRef = await addDoc(postsCollection, newMovie);
+      console.log(newMovie);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+
     axios.post(`${baseUrl}/movieLists`, newMovie).then((res) => res.data);
     console.log(newMovie);
     setNewMovieReview({
@@ -87,6 +98,7 @@ const CreateForm = () => {
               </div>
               <div className="detail-no-title">
                 <Input
+                  id="movie-url"
                   label="Image URL"
                   type="text"
                   value={newMovieReview.imageUrl}
@@ -150,7 +162,7 @@ const CreateForm = () => {
                     });
                   }}
                 />
-                <Input
+                {/* <Input
                   id="movie-createdBY"
                   type="text"
                   value={newMovieReview.createdBy}
@@ -162,7 +174,7 @@ const CreateForm = () => {
                     });
                   }}
                   label="Created By"
-                />
+                /> */}
               </div>
             </div>
           </div>

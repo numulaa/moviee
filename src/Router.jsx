@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -16,6 +17,31 @@ import PostDetail from "./pages/PostDetail.jsx";
 import CreateForm from "./pages/Create.jsx";
 import Search from "./pages/search/Search.jsx";
 import SearchFriend from "./pages/search/SearchFriend.jsx";
+import Login from "./pages/Login.jsx";
+import Profile from "./pages/Profile.jsx";
+
+const Router = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<App />} />
+          <Route path="search" element={<Search />}>
+            <Route index element={<SearchFriend />} />
+            <Route path="friend" element={<SearchFriend />} />
+          </Route>
+          <Route path="messages" element={<Messages />} />
+          <Route path="notifications" element={<ErrorPage />} />
+          <Route path="create" element={<CreateForm />} />
+          <Route path="post/:id" element={<PostDetail />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
+export default Router;
 
 // const Router = () => {
 //   const router = createBrowserRouter([
@@ -43,23 +69,3 @@ import SearchFriend from "./pages/search/SearchFriend.jsx";
 //   ]);
 //   return <RouterProvider router={router} />;
 // };
-
-const Router = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<App />} />
-          <Route path="messages" element={<Messages />} />
-          <Route path="create" element={<CreateForm />} />
-          <Route path="post/:id" element={<PostDetail />} />
-          <Route path="search" element={<Search />}>
-            <Route index element={<SearchFriend />} />
-            <Route path="friend" element={<SearchFriend />} />
-          </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
-};
-export default Router;
