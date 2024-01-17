@@ -275,6 +275,22 @@
       "createdAt": "2024-01-17T08:42:28.513Z",
       "location": "Home",
       "createdBy": "QQ522kT9buZmEBKGRyvGhP0diKL2"
+    },
+    {
+      "id": 0.4980489895123845,
+      "title": "Habibie & Ainun",
+      "genre": [],
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/id/thumb/7/74/Habibie_Ainun_Poster.jpg/220px-Habibie_Ainun_Poster.jpg",
+      "releaseYear": 2012,
+      "personalNote": "In 1953 at her school in Bandung, Hasri Ainun Besari is matched with Bacharuddin Jusuf \"Rudy\" Habibie for their intelligence, infatuating Rudy. In 1962, when accompanying his brother on an appointment, he meets Ainun, now a physician. They start showing love towards each other. Rudy reveals that after going back to Aachen for college, he will return to Indonesia to build his beloved country. He proposes her to be his wife, unable to promise luxury but eternal love. She accepts, and they marry and fly to Aachen.",
+      "review": "Habibie & Ainun is a 2012 Indonesian biographical drama film produced by Manoj Punjabi and Dhamoo Punjabi of MD Pictures. Starring Reza Rahadian, Bunga Citra Lestari and Tio Pakusadewo, the film is based on the memoir written by the 3rd President of the Republic of Indonesia, B. J. Habibie about his wife, Hasri Ainun Habibie, also named \"Habibie and Ainun\".\nThe film, released on 20 December 2012, drew the largest theatrical audience to date in Indonesian cinema history with 4.7 million viewers.[2] It also became MD Pictures' highest grossing film produced to date.",
+      "watchedAt": "2024-01-16",
+      "rating": "5",
+      "createdAt": {
+        "_methodName": "serverTimestamp"
+      },
+      "location": "XX1",
+      "createdBy": "QQ522kT9buZmEBKGRyvGhP0diKL2"
     }
   ],
   "friends": [

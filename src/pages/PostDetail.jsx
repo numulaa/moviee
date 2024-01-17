@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/PostDetail.css";
 import axios from "axios";
+import { doc, onSnapshot } from "firebase/firestore";
+import { auth, postsCollection } from "../firebase";
 
 const baseUrl = "http://localhost:3001";
 
@@ -9,16 +11,16 @@ const PostDetail = () => {
   const { id } = useParams();
   const [currMovie, setCurrMovie] = useState(null);
   const [rating, setRating] = useState([]);
-  const [review, setReview] = useState([]);
+  const user = auth.currentUser;
 
   useEffect(() => {
-    axios.get(`${baseUrl}/movieLists`).then((res) => {
-      const response = res.data;
-      const post = response.find((item) => item.id === id);
-      setCurrMovie(post);
-      setRating(Array.apply("a", Array(post.rating)));
-      setReview(post.review);
+    const unsubscribe = onSnapshot(doc(postsCollection, id), (doc) => {
+      const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+      console.log(source, " data: ", doc.data());
+      setCurrMovie(doc.data());
+      setRating(Array.apply("a", Array(Number(doc.data().rating))));
     });
+    return unsubscribe;
   }, [id]);
 
   return (
@@ -31,15 +33,15 @@ const PostDetail = () => {
           <h3>{currMovie.title}</h3>
           <div className="ratings">
             {rating.map((x, i) => (
-              <i className="fa-solid fa-star icon-star-color" key={i}></i>
+              <i className="fa-solid fa-star icon-star-color" key={x}></i>
             ))}
           </div>
-          <small>Reviewed by {currMovie.createdBy}</small>
+          <small>Reviewed by {user.displayName}</small>
           <div className="main-content">
-            {review.map((text) => (
-              <p key={text}>{text}</p>
+            {/* <p>{currMovie.review.replace(/\n/g, "<br>")}</p> */}
+            {currMovie.review.split("\n").map((text) => (
+              <p>{text}</p>
             ))}
-            {/* <p>{currMovie.review}</p> */}
             <h4>Personal Note</h4>
             <p>{currMovie.personalNote}</p>
           </div>

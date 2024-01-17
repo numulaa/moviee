@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Create.css";
 import Input from "../components/Input";
-import { addDoc } from "firebase/firestore";
+import { addDoc, serverTimestamp } from "firebase/firestore";
 import { postsCollection, auth } from "../firebase";
 
 const baseUrl = "http://localhost:3001";
@@ -27,12 +27,10 @@ const CreateForm = () => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    const newId = Math.random();
     const user = auth.currentUser;
     const newMovie = {
       ...newMovieReview,
-      id: newId,
-      createdAt: new Date(),
+      createdAt: serverTimestamp(),
       createdBy: user.uid,
       imageUrl:
         newMovieReview.imageUrl ||

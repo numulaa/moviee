@@ -7,8 +7,16 @@ import Sidebar from "../components/Sidebar";
 import Post from "../components/Post";
 import FriendLists from "../components/FriendsLists";
 import UserSmall from "../components/UserSmall";
-import { auth } from "../firebase";
+import { auth, postsCollection, displayDate } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import {
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore";
 
 const baseUrl = "http://localhost:3001";
 
@@ -19,12 +27,23 @@ function App() {
   const [displayName, setDisplayName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const navigate = useNavigate();
+
   useEffect(() => {
-    axios.get(`${baseUrl}/movieLists`).then((res) => {
-      console.log(res.data);
-      setMovieLists(res.data);
+    // get data from firebase
+    const q = query(postsCollection, orderBy("createdAt", "desc"));
+    const unsubscribe = onSnapshot(q, function (snapshot) {
+      // sync up our local notes array with the snapshot data
+      const postsArr = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setMovieLists(postsArr);
     });
+
+    return unsubscribe;
   }, []);
+  console.log(movieLists, "movie list");
+
   useEffect(() => {
     axios.get(`${baseUrl}/friends`).then((initialFriends) => {
       console.log(initialFriends.data);

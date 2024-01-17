@@ -2,12 +2,15 @@ import PropTypes from "prop-types";
 import React from "react";
 import "../styles/Card.css";
 import { Link } from "react-router-dom";
+import { displayDate } from "../firebase";
 
 const Card = ({ movie }) => {
-  const rating = Array.apply("a", Array(movie.rating));
-  // const review = movie.review;
+  const rating = Array.apply("a", Array(Number(movie.rating)));
+  const reviewToShow =
+    movie.review.length > 250
+      ? movie.review.substring(0, 250) + " ..."
+      : movie.review;
 
-  const reviewToShow = movie.review[0].substring(0, 250) + " ...";
   return (
     <Link to={`/post/${movie.id}`} key={movie.id} className="card-link">
       <div className="card">
@@ -17,7 +20,7 @@ const Card = ({ movie }) => {
         <div className="movie-desc-wrapper">
           <div className="card-title-wrapper">
             <h3>{movie.title}</h3>
-            <small>{movie.createdAt}</small>
+            <small>{displayDate(movie.createdAt)}</small>
           </div>
           <div className="ratings">
             {rating.map((x, i) => (
