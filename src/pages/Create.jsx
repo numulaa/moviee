@@ -10,7 +10,6 @@ const baseUrl = "http://localhost:3001";
 
 const CreateForm = () => {
   const [newMovieReview, setNewMovieReview] = useState({
-    id: null,
     title: "",
     genre: [],
     imageUrl: "",
@@ -160,19 +159,6 @@ const CreateForm = () => {
                     });
                   }}
                 />
-                {/* <Input
-                  id="movie-createdBY"
-                  type="text"
-                  value={newMovieReview.createdBy}
-                  required={true}
-                  onChange={(e) => {
-                    setNewMovieReview({
-                      ...newMovieReview,
-                      createdBy: e.target.value,
-                    });
-                  }}
-                  label="Created By"
-                /> */}
               </div>
             </div>
           </div>

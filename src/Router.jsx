@@ -19,6 +19,7 @@ import Search from "./pages/search/Search.jsx";
 import SearchFriend from "./pages/search/SearchFriend.jsx";
 import Login from "./pages/Login.jsx";
 import Profile from "./pages/Profile.jsx";
+import UpdatePost from "./pages/UpdatePost.jsx";
 
 const Router = () => {
   return (
@@ -35,6 +36,7 @@ const Router = () => {
           <Route path="notifications" element={<ErrorPage />} />
           <Route path="create" element={<CreateForm />} />
           <Route path="post/:id" element={<PostDetail />} />
+          <Route path="update/:id" element={<UpdatePost />} />
           <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>

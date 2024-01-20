@@ -21,3 +21,40 @@
 .main-content > h4 {
   margin-top: 2rem;
 }
+.top-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.delete-update-btn-container {
+  width: 100%;
+  flex-basis: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+.delete-update-btn-container > .btn {
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+.delete-update-btn-container > .btn.edit-btn {
+  border: 1.5px solid #51456b;
+  background-color: #51456b;
+  color: #fff;
+}
+.delete-update-btn-container > .btn.edit-btn:hover {
+  background-color: #fff;
+  color: #51456b;
+}
+.delete-update-btn-container > .btn.delete-btn {
+  border: 1.5px solid #f8645a;
+  background-color: #f8645a;
+  color: #fff;
+}
+.delete-update-btn-container > .btn.delete-btn:hover {
+  background-color: #fff;
+  color: #f8645a;
+}

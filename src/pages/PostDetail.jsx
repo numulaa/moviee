@@ -1,46 +1,57 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "../styles/PostDetail.css";
-import axios from "axios";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, deleteDoc } from "firebase/firestore";
 import { auth, postsCollection } from "../firebase";
-
-const baseUrl = "http://localhost:3001";
 
 const PostDetail = () => {
   const { id } = useParams();
   const [currMovie, setCurrMovie] = useState(null);
   const [rating, setRating] = useState([]);
   const user = auth.currentUser;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onSnapshot(doc(postsCollection, id), (doc) => {
       const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-      console.log(source, " data: ", doc.data());
       setCurrMovie(doc.data());
       setRating(Array.apply("a", Array(Number(doc.data().rating))));
     });
     return unsubscribe;
   }, [id]);
+  const handleDelete = async () => {
+    await deleteDoc(doc(postsCollection, id));
+    navigate("/");
+  };
 
   return (
     <section className="post-detail-main-section">
       {currMovie ? (
         <main className="post-detail-main">
+          <div className="top-nav">
+            <div className="back-btn">Back</div>
+            <div className="delete-update-btn-container">
+              <Link to={`/update/${id}`} className="btn edit-btn">
+                Edit
+              </Link>
+              <button onClick={handleDelete} className="btn delete-btn">
+                Delete
+              </button>
+            </div>
+          </div>
           <div className="post-detail-img-wrapper">
             <img src={currMovie.imageUrl} />
           </div>
           <h3>{currMovie.title}</h3>
           <div className="ratings">
             {rating.map((x, i) => (
-              <i className="fa-solid fa-star icon-star-color" key={x}></i>
+              <i className="fa-solid fa-star icon-star-color" key={i}></i>
             ))}
           </div>
           <small>Reviewed by {user.displayName}</small>
           <div className="main-content">
-            {/* <p>{currMovie.review.replace(/\n/g, "<br>")}</p> */}
             {currMovie.review.split("\n").map((text) => (
-              <p>{text}</p>
+              <p key={text}>{text}</p>
             ))}
             <h4>Personal Note</h4>
             <p>{currMovie.personalNote}</p>
