@@ -53,7 +53,7 @@ const Sidebar = () => {
             <p>Messages</p>
           </NavLink>
         </li>
-        <li className="sidebar-list-items">
+        {/* <li className="sidebar-list-items">
           <NavLink
             to="/notifications"
             className="sidebar-list-items"
@@ -67,7 +67,7 @@ const Sidebar = () => {
             <i className="fa-regular fa-bell"></i>
             <p>Notifications</p>
           </NavLink>
-        </li>
+        </li> */}
         <li className="sidebar-list-items">
           <NavLink
             to="/create"
@@ -80,9 +80,10 @@ const Sidebar = () => {
               };
             }}>
             <i className="fa-regular fa-square-plus"></i>
-            <p>Create</p>
+            <p>Add Review</p>
           </NavLink>
         </li>
+
         <li className="sidebar-list-items">
           <NavLink
             to="/profile"

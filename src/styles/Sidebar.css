@@ -27,3 +27,9 @@
 .sidebar-list-items i {
   color: #faa7a4;
 }
+
+@media (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+}

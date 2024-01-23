@@ -29,7 +29,9 @@ const PostDetail = () => {
       {currMovie ? (
         <main className="post-detail-main">
           <div className="top-nav">
-            <div className="back-btn">Back</div>
+            <div onClick={() => navigate(-1)} className="btn back-btn">
+              <i className="fa-solid fa-chevron-left"></i>
+            </div>
             <div className="delete-update-btn-container">
               <Link to={`/update/${id}`} className="btn edit-btn">
                 Edit

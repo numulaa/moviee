@@ -17,6 +17,7 @@ export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 export const postsCollection = collection(db, "posts");
+export const moviesCollection = collection(db, "movie");
 
 export function displayDate(firebaseDate) {
   if (!firebaseDate) {

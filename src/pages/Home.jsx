@@ -7,26 +7,26 @@ import Sidebar from "../components/Sidebar";
 import Post from "../components/Post";
 import FriendLists from "../components/FriendsLists";
 import UserSmall from "../components/UserSmall";
-import { auth, postsCollection, displayDate } from "../firebase";
+import {
+  auth,
+  postsCollection,
+  displayDate,
+  moviesCollection,
+} from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { onSnapshot, query, orderBy, where } from "firebase/firestore";
+import FormModal from "../components/FormModal";
 
 const baseUrl = "http://localhost:3001";
 
 function App() {
   const [movieLists, setMovieLists] = useState([]);
-  const [friends, setFriends] = useState([]);
+  const [toWatch, setToWatch] = useState([]);
   const [photoURL, setPhotoURL] = useState(null);
   const [displayName, setDisplayName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
+  const [isShowingMovieListModal, setIsShowingMovieListModal] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios.get(`${baseUrl}/friends`).then((initialFriends) => {
-      console.log(initialFriends.data);
-      setFriends(initialFriends.data);
-    });
-  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -53,6 +53,22 @@ function App() {
           setMovieLists(postsArr);
         });
 
+        // fetcing realtime to watch movie data from the server
+        const movieQ = query(
+          moviesCollection,
+          where("createdBy", "==", uid),
+          where("isWatched", "==", false)
+        );
+
+        onSnapshot(movieQ, function (snapshot) {
+          // sync up our local notes array with the snapshot data
+          const moviesArr = snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          setToWatch(moviesArr);
+        });
+
         setPhotoURL(photoURL);
         setDisplayName(displayName);
         setUserEmail(email);
@@ -64,10 +80,16 @@ function App() {
     return unsubscribe;
   }, []);
 
+  const handleCloseModal = () => setIsShowingMovieListModal(false);
+
   return (
     <section className="main-section">
+      {isShowingMovieListModal && (
+        <FormModal handleCloseModal={handleCloseModal} />
+      )}
       <main>
         <h3 className="main-quote">"Cinematic dreams fuel life's scenes."</h3>
+
         {movieLists.map((movie) => (
           <Card movie={movie} key={movie.id} />
         ))}
@@ -81,7 +103,12 @@ function App() {
           displayName={displayName}
           photoURL={photoURL}
         />
-        {<FriendLists friends={friends} />}
+        {
+          <FriendLists
+            movies={toWatch}
+            handleOpenMovieModal={() => setIsShowingMovieListModal(true)}
+          />
+        }
       </section>
     </section>
   );

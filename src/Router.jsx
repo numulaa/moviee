@@ -20,6 +20,7 @@ import SearchFriend from "./pages/search/SearchFriend.jsx";
 import Login from "./pages/Login.jsx";
 import Profile from "./pages/Profile.jsx";
 import UpdatePost from "./pages/UpdatePost.jsx";
+import WatchList from "./pages/WatchList.jsx";
 
 const Router = () => {
   return (
@@ -35,6 +36,7 @@ const Router = () => {
           <Route path="messages" element={<Messages />} />
           <Route path="notifications" element={<ErrorPage />} />
           <Route path="create" element={<CreateForm />} />
+          <Route path="list" element={<WatchList />} />
           <Route path="post/:id" element={<PostDetail />} />
           <Route path="update/:id" element={<UpdatePost />} />
           <Route path="profile" element={<Profile />} />

@@ -2,7 +2,7 @@
   background-color: none;
   border: 1px dashed #51456b;
   border-radius: 0.75rem;
-  padding: 0.5rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -40,4 +40,20 @@
   font-size: 0.5rem;
   color: #7ed320;
   justify-self: flex-end;
+}
+.title-btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title-btn-wrapper > button {
+  border: none;
+}
+.title-btn-wrapper i {
+  font-size: 1.5rem;
+  color: #f8645a;
+  cursor: pointer;
+}
+.friends-list-item input {
+  width: fit-content;
 }
