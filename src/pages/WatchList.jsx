@@ -5,7 +5,7 @@ const WatchList = () => {
   const [movie, setMovie] = useState("");
   return (
     <>
-      <h1>A new movie i want to watch</h1>
+      <h1>Add a new movie to WatchList</h1>
       <form>
         <Input
           label="Title"

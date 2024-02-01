@@ -20,7 +20,7 @@ const FriendLists = ({ movies, handleOpenMovieModal }) => {
   return (
     <div className="friends-list-wrapper">
       <div className="title-btn-wrapper">
-        <h4>Movies to Watch</h4>
+        <h4>Watch List</h4>
         <button onClick={handleOpenMovieModal}>
           <i className="fa-regular fa-square-plus"></i>
         </button>
