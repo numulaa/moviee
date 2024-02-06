@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../styles/FriendsLists.css";
 import profilePic from "../assets/nurul-pic.jpeg";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { moviesCollection } from "../firebase";
 
 const FriendLists = ({ movies, handleOpenMovieModal }) => {
@@ -16,6 +16,9 @@ const FriendLists = ({ movies, handleOpenMovieModal }) => {
     } catch (e) {
       console.error("Error updating document: ", e);
     }
+  };
+  const handleDeleteWatchList = async (id) => {
+    await deleteDoc(doc(moviesCollection, id));
   };
   return (
     <div className="friends-list-wrapper">
@@ -46,6 +49,9 @@ const FriendLists = ({ movies, handleOpenMovieModal }) => {
             <label htmlFor={movie.id} className="to-watch-input">
               {movie.title}
             </label>
+            <button onClick={() => handleDeleteWatchList(movie.id)}>
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
           </li>
         ))}
       </ul>

@@ -24,6 +24,17 @@
   align-items: center;
   width: 100%;
 }
+.friends-list-wrapper .friends-list .friends-list-item button {
+  border: none;
+  cursor: pointer;
+}
+.friends-list-wrapper .friends-list .friends-list-item i {
+  color: #000;
+  font-size: 0.75rem;
+}
+.friends-list-wrapper .friends-list .friends-list-item i:hover {
+  font-weight: 700;
+}
 .friend-profile-pic {
   width: 35px;
   height: 35px;
@@ -36,11 +47,11 @@
   border-radius: 100%;
   object-fit: cover;
 }
-.friends-list .friends-list-item i {
+/* .friends-list .friends-list-item i {
   font-size: 0.5rem;
   color: #7ed320;
   justify-self: flex-end;
-}
+} */
 .title-btn-wrapper {
   display: flex;
   justify-content: space-between;
@@ -56,4 +67,8 @@
 }
 .friends-list-item input {
   width: fit-content;
+  cursor: pointer;
 }
+/* .friends-list-item input:hover {
+  background-color: red;
+} */
