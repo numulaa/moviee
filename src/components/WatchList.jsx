@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "../components/Input";
+import Input from "./Input";
 
 const WatchList = () => {
   const [movie, setMovie] = useState("");
