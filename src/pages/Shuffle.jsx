@@ -1,10 +1,12 @@
 import { onSnapshot, query, where } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { auth, moviesCollection } from "../firebase";
 import "../styles/Shuffle.css";
 import Input from "../components/Input";
+
+import Bubble from "../components/Bubble";
 
 const Shuffle = () => {
   const [movies, setMovies] = useState([]);
@@ -48,36 +50,26 @@ const Shuffle = () => {
     return unsubscribe;
   }, []);
   return (
-    <div style={mainContainerStyle}>
+    <div className="shuffle-main-container">
       <div className="main-shuffle">
-        <h1>Shuffle page</h1>
+        <h1>Shuffle</h1>
+        <div className="mix-button">
+          <i className="fa-brands fa-mixer"></i>
+        </div>
+
         {/* <Input /> */}
-        <MultiSelect
+        {/* <MultiSelect
           options={options}
           value={selected}
           onChange={setSelected}
           labelledBy="Select your friends"
           className="input-multiselect"
-        />
+        /> */}
       </div>
       {movies.map((movie) => {
-        const randomLeftPosition = Math.random(window.innerWidth) * 1000;
-        const randomTopPosition = Math.random(window.innerHeight) * 1000;
-        console.log(randomLeftPosition, randomTopPosition);
         return (
           // https://codepen.io/christinastep/pen/eXypvq
-          <p
-            key={movie.id}
-            style={{
-              position: "absolute",
-              left: `${randomLeftPosition}px`,
-              top: `${randomTopPosition}px`,
-              // backgroundColor: "red",
-              // padding: "1rem",
-              // borderRadius: "10px",
-            }}>
-            {movie.title}
-          </p>
+          <Bubble title={movie.title} key={movie.id} />
         );
       })}
     </div>

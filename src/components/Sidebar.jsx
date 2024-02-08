@@ -65,7 +65,7 @@ const Sidebar = () => {
               };
             }}>
             <i className="fa-regular fa-bell"></i>
-            <p>Notifications</p>
+            <p>Shuffle</p>
           </NavLink>
         </li>
         <li className="sidebar-list-items">

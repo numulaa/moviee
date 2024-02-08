@@ -62,6 +62,7 @@ const Login = () => {
   const onGoogleSignInHandle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
+        console.log(result);
         navigate("/");
       })
       .catch((error) => {
