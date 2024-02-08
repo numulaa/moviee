@@ -1,0 +1,16 @@
+.main-shuffle {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input-multiselect {
+  display: block;
+  /* width: 100%; */
+  min-width: 300px;
+  padding: 0.75rem;
+  /* border-radius: 10px; */
+  /* border: 1px solid #51456b; */
+  font-size: 1rem;
+}
