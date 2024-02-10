@@ -6,7 +6,7 @@ import Footer from "./Footer";
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <h1>Moviee</h1>
+      <h1>THis Movie</h1>
       <ul className="sidebar-list">
         <li className="sidebar-list-items">
           <NavLink
@@ -55,7 +55,7 @@ const Sidebar = () => {
         </li>
         <li className="sidebar-list-items">
           <NavLink
-            to="/notifications"
+            to="/shuffle"
             className="sidebar-list-items"
             style={({ isActive, isPending, isTransitioning }) => {
               return {

@@ -35,7 +35,7 @@ const Router = () => {
             <Route path="friend" element={<SearchFriend />} />
           </Route>
           <Route path="messages" element={<Messages />} />
-          <Route path="notifications" element={<Shuffle />} />
+          <Route path="shuffle" element={<Shuffle />} />
           <Route path="create" element={<CreateForm />} />
           <Route path="list" element={<WatchList />} />
           <Route path="post/:id" element={<PostDetail />} />

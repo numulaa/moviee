@@ -52,10 +52,10 @@ const Shuffle = () => {
   return (
     <div className="shuffle-main-container">
       <div className="main-shuffle">
-        <h1>Shuffle</h1>
+        {/* <h1>Shuffle</h1>
         <div className="mix-button">
           <i className="fa-brands fa-mixer"></i>
-        </div>
+        </div> */}
 
         {/* <Input /> */}
         {/* <MultiSelect
